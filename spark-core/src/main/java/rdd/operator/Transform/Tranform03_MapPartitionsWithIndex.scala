@@ -1,9 +1,9 @@
-package bigdata.core.rdd.operator
+package rdd.operator.Transform
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Operator03_Transform_MapPartitionsWithIndex {
+object Tranform03_MapPartitionsWithIndex {
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDDOperator")
     val sc = new SparkContext(sparkConf)

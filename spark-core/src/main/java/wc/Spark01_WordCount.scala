@@ -1,4 +1,4 @@
-package bigdata.core.wc
+package wc
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -14,13 +14,12 @@ object Spark01_WordCount {
     // execute job operations
     val lines : RDD[String] = sc.textFile("data")
     val words : RDD[String] = lines.flatMap(_.split(" "))
-    var wordGroup: RDD[(String, Iterable[String])] = words.groupBy(word => word)
+    val wordGroup: RDD[(String, Iterable[String])] = words.groupBy(word => word)
     val word2count = wordGroup.map{
-      case ( word, list ) => {
+      case ( word, list ) =>
         (word, list.size)
-      }
     }
-    var array: Array[(String, Int)] = word2count.collect()
+    val array: Array[(String, Int)] = word2count.collect()
     array.foreach(println)
     // close connection
     sc.stop()

@@ -1,4 +1,4 @@
-package bigdata.core.test
+package test
 
 class Task extends Serializable {
   var data : List[Int] = _

@@ -1,4 +1,4 @@
-package bigdata.core.test
+package test
 
 import java.io.{InputStream, ObjectInputStream}
 import java.net.{ServerSocket, Socket}
@@ -10,8 +10,8 @@ object Executor2 {
     println("Server started, waiting for data...")
 
     // waiting for client connection
-    var client : Socket = server.accept()
-    var in: InputStream = client.getInputStream
+    val client: Socket = server.accept()
+    val in: InputStream = client.getInputStream
     val objIn = new ObjectInputStream(in)
     val task: Task = objIn.readObject().asInstanceOf[Task]
     val ints: List[Int] = task.compute()

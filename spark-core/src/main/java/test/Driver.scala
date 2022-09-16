@@ -1,4 +1,4 @@
-package bigdata.core.test
+package test
 
 import java.io.{ObjectOutputStream, OutputStream}
 import java.net.Socket
