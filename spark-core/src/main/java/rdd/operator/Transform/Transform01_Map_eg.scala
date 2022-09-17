@@ -3,17 +3,17 @@ package rdd.operator.Transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Tranform02_MapPartitions_eg {
+object Transform01_Map_eg {
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf().setMaster("local[*]").setAppName("RDDOperator")
     val sc = new SparkContext(sparkConf)
 
-    val rdd = sc.makeRDD(List(1,2,3,4), 2)
-    // Example: 获取每个数据分区的最大值
-    val mapRDD: RDD[Int] = rdd.mapPartitions(
-      itr => {
-        // mapPartitions返回迭代器
-        List(itr.max).iterator
+    // Example: 从服务器日志数据 apache.log 获取用户请求URL资源路径
+    val rdd: RDD[String] = sc.textFile("data/apache.log")
+    val mapRDD: RDD[String] = rdd.map(
+      line => {
+        val datas = line.split(" ")
+        datas(6)
       }
     )
     mapRDD.collect().foreach(println)

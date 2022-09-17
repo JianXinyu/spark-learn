@@ -3,7 +3,7 @@ package rdd.operator.Transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Tranform07_filter {
+object Transform07_filter {
   def main(args : Array[String]) : Unit = {
     val sparkConf = new SparkConf().setMaster("local[*]").setAppName("operator-filter")
     val sc = new SparkContext(sparkConf)

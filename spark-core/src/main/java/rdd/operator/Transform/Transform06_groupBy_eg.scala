@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 import java.text.SimpleDateFormat
 import java.util.Date
 
-object Tranform06_groupBy_eg {
+object Transform06_groupBy_eg {
   def main(args : Array[String]) : Unit = {
     val sparkConf = new SparkConf().setMaster("local[*]").setAppName("Operator-groupBy")
     val sc = new SparkContext(sparkConf)
