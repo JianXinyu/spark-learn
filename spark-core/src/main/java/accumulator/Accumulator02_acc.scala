@@ -37,7 +37,7 @@ object Accumulator02_acc {
     mapRDD.collect()
     mapRDD.collect()
     println("sum = " + sum.value)
-    
+
     sc.stop()
   }
   }
