@@ -25,7 +25,7 @@ object Persist06_difference {
 
     // 增加缓存 避免再重新跑一个 job 做 checkpoint
 //    mapRDD.cache()
-    mapRDD. checkpoint()
+    mapRDD.checkpoint()
 
     val reduceRDD = mapRDD.reduceByKey(_+_)
     reduceRDD.collect().foreach(println)

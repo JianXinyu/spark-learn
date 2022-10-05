@@ -22,7 +22,7 @@ object Persist04_checkpoint {
     )
 
     // 注意这里又执行了一遍
-    mapRDD. checkpoint()
+    mapRDD.checkpoint()
 
     val reduceRDD = mapRDD.reduceByKey(_+_)
     reduceRDD.collect().foreach(println)
