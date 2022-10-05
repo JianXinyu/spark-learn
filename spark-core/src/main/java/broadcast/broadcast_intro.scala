@@ -1,11 +1,12 @@
 package broadcast
 
+import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.collection.mutable
 
-object broadcast {
+object broadcast_intro {
 
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf().setMaster("local[*]").setAppName("broadcast")
@@ -24,7 +25,7 @@ object broadcast {
         (w, (c, l))
       }
     }.collect().foreach(println)
-
+    println("********************************")
     // 但上面的方法在数据量很大的时候有问题
     /*
     闭包数据是以Task为单位发送的，每个Task都包含数据。这样可能会导致一个 Executor 包含大量重复数据，并且占用大量内存。
@@ -32,6 +33,15 @@ object broadcast {
     Spark 中的广播变量就可以将闭包数据放到 Executor 的内存中。
     广播变量不能修改，是分布式共享只读变量
      */
+    // 1. 封装广播变量
+    val bc: Broadcast[mutable.Map[String, Int]] = sc.broadcast(map)
+    rdd1.map {
+      case (w, c) => {
+        // 2. 访问广播变量
+        val l: Int = bc.value.getOrElse(w, 0)
+        (w, (c, l))
+      }
+    }.collect().foreach(println)
     sc.stop()
   }
 }
